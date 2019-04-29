@@ -13,7 +13,6 @@ def read_corpus(file):
 
 questions = read_corpus('./Q.txt')
 answers = read_corpus('./A.txt')
-assert len(questions)==len(answers), "问题与答案的数目不匹配，请检查数据文件"
 
 print('Example:')
 print('Question',questions[0])
