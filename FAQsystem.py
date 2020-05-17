@@ -49,7 +49,7 @@ def preprocess_text(data):
 qlist = preprocess_text(questions)   # 更新后的
 print('questions after preprocess',qlist[0:3])
 
-#"questions after preprocess ['新股申购,条件', '新股申购,如何,操作', '新股申购,额度,如何,查询']"
+
 
 # # 词袋模型特征
 # bow_vectorizer, bow_train_features = bow_extractor(norm_train_corpus)
@@ -121,5 +121,5 @@ def answer_tfidf(input):
     best_idx = idx_for_largest_cosine_sim(bow, tfidf_X)
     return answers[best_idx]
 
-print('bow model',answer_bow("如何变更基金定投金额、约定扣款日期"))
-print('tfidf model',answer_tfidf("如何变更基金定投金额、约定扣款日期"))
+print('bow model',answer_bow("煤的元素分析成分有哪些"))
+print('tfidf model',answer_tfidf("煤的元素分析成分有哪些"))
