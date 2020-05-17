@@ -20,9 +20,7 @@ print('Answer',answers[0])
 
 import re
 import jieba
-# from sklearn.feature_extraction.text import CountVectorizer
-from feature_extractors import bow_extractor, tfidf_extractor
-import gensim
+
 
 def filter_out_category(input):
     new_input = re.sub('[\u4e00-\u9fa5]{2,5}\\/','',input)
@@ -51,13 +49,20 @@ print('questions after preprocess',qlist[0:3])
 
 
 
-# # 词袋模型特征
-# bow_vectorizer, bow_train_features = bow_extractor(norm_train_corpus)
-# bow_test_features = bow_vectorizer.transform(norm_test_corpus)
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-# # tfidf 特征
-# tfidf_vectorizer, tfidf_train_features = tfidf_extractor(norm_train_corpus)
-# tfidf_test_features = tfidf_vectorizer.transform(norm_test_corpus)
+
+def bow_extractor(corpus, ngram_range=(1, 1)):
+    vectorizer = CountVectorizer(min_df=1, ngram_range=ngram_range)
+    features = vectorizer.fit_transform(corpus)
+    return vectorizer, features
+
+
+def tfidf_extractor(corpus, ngram_range=(1, 1)):
+    vectorizer = TfidfVectorizer(min_df=1, norm='l2', smooth_idf=True, use_idf=True, ngram_range=ngram_range)
+    features = vectorizer.fit_transform(corpus)
+    return vectorizer, features
 
 
 # # 词袋模型特征
